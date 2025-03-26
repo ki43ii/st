@@ -5,8 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Iosevka:pixelsize=35:antialias=true:autohint=true";
-static int borderpx = 2;
+static char *font = "Jetbrains Mono:pixelsize=20:antialias=true:autohint=true";
+static int borderpx = 60;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -53,14 +53,14 @@ int allowwindowops = 0;
  * near minlatency, but it waits longer for slow updates to avoid partial draw.
  * low minlatency will tear/flicker more, as it can "detect" idle too early.
  */
-static double minlatency = 2;
-static double maxlatency = 33;
+static double minlatency = 0;
+static double maxlatency = 1;
 
 /*
  * blinking timeout (set to 0 to disable blinking) for the terminal blinking
  * attribute.
  */
-static unsigned int blinktimeout = 800;
+static unsigned int blinktimeout = 100;
 
 /*
  * thickness of underline and bar cursors
@@ -71,7 +71,7 @@ static unsigned int cursorthickness = 2;
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
  * it
  */
-static int bellvolume = 0;
+static int bellvolume = 100;
 
 /* default TERM value */
 char *termname = "st-256color";
@@ -89,43 +89,42 @@ char *termname = "st-256color";
  * -a` »tab0« should appear. You can tell the terminal to not expand tabs by
  *  running following command:
  *
- *	stty tabs
+ *	stty tams
  */
 unsigned int tabspaces = 8;
-
-/* bg opacity */
-float alpha = 1.00;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#181818",
-	"#f43841",
-	"#73c936",
-	"#ffdd33",
-	"#96a6c8",
-	"#9e95c7",
-	"#95a99f",
-	"#f4f4ff",
+	black,
+	red,
+	green,
+	yellow,
+	blue,
+	magenta,
+	cyan,
+	white,
 
 	/* 8 bright colors */
-	"#424242",
-	"#f43841",
-	"#73c936",
-	"#ffdd33",
-	"#96a6c8",
-	"#9e95c7",
-	"#95a99f",
-	"#ffffff",
+	black,
+	red,
+	green,
+	yellow,
+	blue,
+	magenta,
+	cyan,
+	white,
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#e4e4ef",
-	"#181818",
-	"#e4e4ef", /* default foreground colour */
-	"#181818", /* default background colour */
+	white,
+	black,
+	white, /* default foreground colour */
+	black, /* default background colour */
 };
+
+//ignore for now, update later
 
 
 /*
@@ -144,14 +143,14 @@ static unsigned int defaultrcs = 257;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorshape = 4;
 
 /*
  * Default columns and rows numbers
  */
 
-static unsigned int cols = 80;
-static unsigned int rows = 24;
+static unsigned int cols = 60;
+static unsigned int rows = 18;
 
 /*
  * Default colour and shape of the mouse cursor
@@ -196,8 +195,8 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ MODKEY,               XK_l,           zoom,           {.f = +1} },
-	{ MODKEY,               XK_h,           zoom,           {.f = -1} },
+	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
+	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
@@ -206,7 +205,7 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ MODKEY,               XK_k,           kscrollup,      {.i = -1} },
 	{ MODKEY,               XK_j,           kscrolldown,    {.i = -1} },
-};
+}; 
 
 /*
  * Special keys (change & recompile st.info accordingly)
