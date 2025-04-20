@@ -6,7 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "Jetbrains Mono:pixelsize=20:antialias=true:autohint=true";
-static int borderpx = 60;
+static int borderpx = 40;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -96,33 +96,35 @@ unsigned int tabspaces = 8;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#262626",
-	"#FF1B00",
-	"#A5E055",
-	"#FBE74A",
-	"#496487",
-	"#FD5FF1",
-	"#89E9FE",
-	"#CBCCCB",
+	"#282828",
+	"#CC241D",
+	"#98971A",
+	"#D79921",
+	"#458588",
+	"#B16286",
+	"#689D6A",
+	"#A89984",
 
 	/* 8 bright colors */
-	"#575757",
-	"#D51D00",
-	"#A5DF55",
-	"#FBE84A",
-	"#89BEFF",
-	"#C001C1",
-	"#86EAFE",
-	"#DBDBDB",
+	"#928374",
+	"#FB4934",
+	"#B8BB26",
+	"#FABD2F",
+	"#83A598",
+	"#D3869B",
+	"#8EC07C",
+	"#EBDBB2",
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#DBDBDB",
-	"#000000",
-	"#DBDBDB", /* default foreground colour */
-	"#000000", /* default background colour */
+	"#A89984",
+	"#1C1C1C",
+	"#A89984", /* default foreground colour */
+	"#1C1C1C", /* default background colour */
 };
+
+//ignore for now, update later
 
 
 /*
